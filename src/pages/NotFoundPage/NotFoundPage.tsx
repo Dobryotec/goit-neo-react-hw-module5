@@ -7,9 +7,9 @@ const NotFoundPage: React.FC = () => {
     <div className={css['not-found-wrapper']}>
       <div className={css['not-found-header-block']}>
         <span className={css['not-found-text']}>4</span>
-        <img src="../../public/plaint.png" alt="Plane" className={css['plaint-img']} />
+        <img src="/plaint.png" alt="Plane" className={css['plaint-img']} />
         <span className={css['not-found-text']}>4</span>
-        <img src="../../public/bird.png" alt="Bird" className={css['bird-img']} />
+        <img src="/bird.png" alt="Bird" className={css['bird-img']} />
       </div>
 
       <div className={css['not-found-footer-block']}>
