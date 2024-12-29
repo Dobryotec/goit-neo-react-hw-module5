@@ -13,7 +13,7 @@ import css from './MovieReviews.module.css';
 const MovieReviews: React.FC = () => {
   const { movieId } = useParams();
 
-  const [reviews, setReviews] = useState<IMovieReviews[] | []>([]);
+  const [reviews, setReviews] = useState<IMovieReviews[]>([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +23,7 @@ const MovieReviews: React.FC = () => {
       try {
         setIsLoading(true);
         setError(false);
-        const { results } = await getMovieReviews(movieId);
+        const { results }: IMovieReviews = await getMovieReviews(movieId);
         setReviews(results);
       } catch {
         setError(true);

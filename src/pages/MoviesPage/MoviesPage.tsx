@@ -2,16 +2,18 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { getMovieSearchWord } from '../../api/movies';
+import { IMovie } from '../../components/MoviesList/MoviesList.types';
+import { MoviesSearchResponse } from './MoviesPage.types';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import MoviesList from '../../components/MoviesList/MoviesList';
-
-import css from './MoviesPage.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
+import css from './MoviesPage.module.css';
+
 const MoviesPage: React.FC = () => {
-  const [searchMovies, setSearchMovies] = useState([]);
+  const [searchMovies, setSearchMovies] = useState<IMovie[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -37,7 +39,7 @@ const MoviesPage: React.FC = () => {
       try {
         setError(false);
         setIsLoading(true);
-        const { results } = await getMovieSearchWord(query);
+        const { results }: MoviesSearchResponse = await getMovieSearchWord(query);
         setSearchMovies(results);
       } catch {
         setError(true);

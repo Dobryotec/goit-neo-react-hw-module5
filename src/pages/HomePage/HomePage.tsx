@@ -5,11 +5,13 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Spinner from '../../components/Spinner/Spinner';
 
 import { getPopularMoviesOfTheDay } from '../../api/movies';
+import { IMovie } from '../../components/MoviesList/MoviesList.types';
+import { MoviesSearchResponse } from '../MoviesPage/MoviesPage.types';
 
 import css from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,7 +20,7 @@ const HomePage: React.FC = () => {
       try {
         setIsLoading(true);
         setError(false);
-        const { results } = await getPopularMoviesOfTheDay();
+        const { results }: MoviesSearchResponse = await getPopularMoviesOfTheDay();
         setMovies(results);
       } catch {
         setError(true);

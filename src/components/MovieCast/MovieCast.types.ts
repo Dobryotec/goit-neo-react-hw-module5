@@ -4,3 +4,7 @@ export interface IMovieCast {
   profile_path: string;
   character: string;
 }
+
+export interface IMovieCastResponse {
+  cast: IMovieCast[];
+}

@@ -3,3 +3,7 @@ export interface IMovieReviews {
   author: string;
   content: string;
 }
+
+export interface IMovieReviews {
+    results: IMovieReviews[]
+}

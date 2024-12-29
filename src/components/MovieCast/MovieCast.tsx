@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { getMovieCast } from '../../api/movies';
-import { IMovieCast } from './MovieCast.types';
+import { IMovieCast, IMovieCastResponse } from './MovieCast.types';
 import MovieCastItem from '../MovieCastItem/MovieCastItem';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Spinner from '../Spinner/Spinner';
@@ -11,7 +11,7 @@ import Spinner from '../Spinner/Spinner';
 import css from './MovieCast.module.css';
 
 const MovieCast: React.FC = () => {
-  const [cast, setCast] = useState<IMovieCast[] | []>([]);
+  const [cast, setCast] = useState<IMovieCast[]>([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
@@ -22,7 +22,7 @@ const MovieCast: React.FC = () => {
       try {
         setIsLoading(true);
         setError(false);
-        const { cast } = await getMovieCast(movieId);
+        const { cast }: IMovieCastResponse = await getMovieCast(movieId);
         setCast(cast);
       } catch {
         setError(true);

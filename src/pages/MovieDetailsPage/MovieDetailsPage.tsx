@@ -25,7 +25,7 @@ const MovieDetailsPage: React.FC = () => {
       try {
         setIsLoading(true);
         setError(false);
-        const result = await getMovieDetails(movieId);
+        const result: IMovieDetails = await getMovieDetails(movieId);
         setMovie(result);
       } catch {
         setError(true);
